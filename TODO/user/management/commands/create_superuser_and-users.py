@@ -8,7 +8,7 @@ number = 3
 
 
 class Command(BaseCommand):
-    '''скрипт создания ползователей и суперпользователя'''
+    '''Скрипт создания ползователей и суперпользователя'''
 
     def get_email(self):
         return ''.join(random.choice(string.ascii_lowercase) for i in range(8)) + '@gmail.com'
