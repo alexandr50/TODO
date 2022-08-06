@@ -1,5 +1,5 @@
 from django.core.management import BaseCommand
-from user.models import User
+from users.models import User
 import string
 import random
 from django.utils.crypto import get_random_string
