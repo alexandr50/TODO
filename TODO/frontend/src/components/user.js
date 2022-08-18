@@ -5,34 +5,42 @@ const UserItem = ({user}) => {
     return (
         <tr>
             <td>
+                {user.username}
+            </td>
+            <td>
                 {user.first_name}
-                </td>
-                <td>
+            </td>
+            <td>
                 {user.last_name}
-                </td>
+            </td>
 
-                <td>
+            <td>
                 {user.email}
-                </td>
+            </td>
         </tr>
     )
 
 }
 
 
-
 const UserList = ({users}) => {
     return (
-    <table>
-        <th>
-        First name
-        </th>
-        <th>
-        Last Name
-        </th>
+        <table>
+            <th>
+                Username
+            </th>
+            <th>
+                First name
+            </th>
+            <th>
+                Last Name
+            </th>
+            <th>
+                Email
+            </th>
 
-        {users.map((user) => <UserItem user={user} />)}
-    </table>
+            {users.map((user) => <UserItem user={user}/>)}
+        </table>
 
     )
 }

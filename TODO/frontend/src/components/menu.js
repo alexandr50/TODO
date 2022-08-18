@@ -1,15 +1,22 @@
 import React from 'react';
 import Footer from "./footer";
+import {HashRouter, Route, BrowserRouter, Link} from "react-router-dom";
 
 const Menu = () => {
     return (
-        <nav className = 'navbar navbar-light bg-dark'>
-        <form className = 'form-inline'>
-            <button className="btn btn-outline-success" type="button">Main button></button>
-            <button className="btn btn-outline-success" type="button">Users></button>
-        </form>
+        <HashRouter>
+            <nav>
+                <ul>
+                    <form className="form-inline">
+                        <li><Link to='/'>Main</Link></li>
+                        <li><Link to='/todos'>Todos</Link></li>
+                        <li><Link to='/project'>Projects list</Link></li>
+                    </form>
 
-        </nav>
+                </ul>
+            </nav>
+        </HashRouter>
+
     )
 
 }

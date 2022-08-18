@@ -17,7 +17,7 @@ class ProjectModelViewSet(viewsets.ModelViewSet):
     # renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
-    pagination_class = ProjectLimitOffsetPagination
+    # pagination_class = ProjectLimitOffsetPagination
     filterset_class = ProjectFilter
 
     def get_queryset(self):
@@ -36,8 +36,8 @@ class TodoCustomViewSet(mixins.CreateModelMixin,mixins.RetrieveModelMixin,
     renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
     queryset = Todo.objects.all()
     serializer_class = TodoSerializer
-    pagination_class = TodoLimitOffsetPagination
-    filterset_class = TodoFilter
+    # pagination_class = TodoLimitOffsetPagination
+    # filterset_class = TodoFilter
 
     def desrtoy(self, request, *args, **kwargs):
         try:
