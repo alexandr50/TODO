@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from rest_framework import viewsets, mixins, status
 from rest_framework.pagination import LimitOffsetPagination
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.renderers import JSONRenderer, BrowsableAPIRenderer
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
@@ -14,11 +15,12 @@ class ProjectLimitOffsetPagination(LimitOffsetPagination):
     default_limit = 10
 
 class ProjectModelViewSet(viewsets.ModelViewSet):
-    # renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
+    renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
     # pagination_class = ProjectLimitOffsetPagination
-    filterset_class = ProjectFilter
+    # filterset_class = ProjectFilter
+    # permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         name = self.request.query_params.get('name', None)

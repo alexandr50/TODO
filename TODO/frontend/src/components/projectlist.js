@@ -1,46 +1,48 @@
 import React from 'react';
 import {useParams} from "react-router-dom";
 
-const ProjectItem = ({project}) => {
+const TodoItem = ({item}) => {
 
     return (
         <tr>
+
             <td>
-                {project.id}
-            </td>
-            <td>
-                {project.name}
-            </td>
-            <td>
-                {project.link}
+                {item.text}
             </td>
 
             <td>
-                {project.users}
+                {item.created_at}
+            </td>
+            <td>
+                {item.updated_at}
+            </td>
+            <td>
+                {item.person}
             </td>
         </tr>
     )
 
 }
 
-
-const ProjectFilterList = ({projects}) => {
-    let {id} = useParams()
-    console.log(id)
-    let filter_projects = projects.filter((project => project.name.includes(parseInt(id))))
+const ProjectFilterList = ({items})=>{
+    let {projectId} = useParams()
+    let filter_projects = items.filter((item) => item.project === projectId)
     return (
         <table>
             <th>
-                name
+                text
             </th>
             <th>
-                link
+                created_at
             </th>
             <th>
-                users
+                updated_at
+            </th>
+            <th>
+                person
             </th>
 
-            {filter_projects.map((project) => <ProjectItem project={project}/>)}
+            {filter_projects.map((item) => <TodoItem item={item}/>)}
         </table>
 
     )

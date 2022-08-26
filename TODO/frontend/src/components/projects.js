@@ -1,19 +1,19 @@
 import React from 'react';
 import {HashRouter, BrowserRouter, Route, Routes, Link, Redirect} from 'react-router-dom'
 
-const ProjectItem = ({project}) => {
+const ProjectItem = ({item}) => {
 
     return (
         <tr>
             <td>
-                <Link to={`/project/${project.id}`}>{project.name}</Link>
+                <Link to={`project/${item.id}`}>{item.name}</Link>
                 </td>
                 <td>
-                {project.link}
+                {item.link}
                 </td>
 
                 <td>
-                {project.users}
+                {item.users}
                 </td>
         </tr>
     )
@@ -22,7 +22,7 @@ const ProjectItem = ({project}) => {
 
 
 
-const ProjectList = ({projects}) => {
+const ProjectList = ({items}) => {
     return (
     <table>
 
@@ -36,7 +36,7 @@ const ProjectList = ({projects}) => {
         users
         </th>
 
-        {projects.map((project) => <ProjectItem project={project} />)}
+        {items.map((item) => <ProjectItem item={item} />)}
     </table>
 
     )

@@ -7,6 +7,8 @@ const TodoItem = ({todo}) => {
             <td>
                 {todo.project}
             </td>
+
+
             <td>
                 {todo.text}
             </td>
@@ -32,6 +34,7 @@ const TodoList = ({todos}) => {
             <th>
                 project
             </th>
+
             <th>
                 text
             </th>
