@@ -1,5 +1,5 @@
 from django.core.management import BaseCommand
-from user.models import User
+from users.models import User
 import string
 import random
 from django.utils.crypto import get_random_string
@@ -8,7 +8,7 @@ number = 3
 
 
 class Command(BaseCommand):
-    '''скрипт создания ползователей и суперпользователя'''
+    '''Скрипт создания ползователей и суперпользователя'''
 
     def get_email(self):
         return ''.join(random.choice(string.ascii_lowercase) for i in range(8)) + '@gmail.com'
