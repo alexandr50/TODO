@@ -2,7 +2,7 @@ from rest_framework.serializers import HyperlinkedModelSerializer, ModelSerializ
 
 from .models import User
 
-class UserModelSerializers(HyperlinkedModelSerializer):
+class UserModelSerializers(ModelSerializer):
     class Meta:
         model = User
         fields = ('username', 'first_name', 'last_name', 'email')
