@@ -7,16 +7,16 @@ from .models import Project, Todo
 
 class ProjectSerializer(ModelSerializer):
 
-    users = SlugRelatedField(many=True,queryset=User.objects.all(), slug_field='username')
+    # users = SlugRelatedField(many=True,queryset=User.objects.all(), slug_field='username')
 
     class Meta:
         model = Project
-        fields = ('name', 'link', 'users')
+        fields = ('name', 'link')
 
 class TodoSerializer(ModelSerializer):
 
-    project= SlugRelatedField(queryset=Project.objects.all(), slug_field='name')
-    person = SlugRelatedField(queryset=User.objects.all(), slug_field='username')
+    # project= SlugRelatedField(queryset=Project.objects.all(), slug_field='name')
+    # person = SlugRelatedField(queryset=User.objects.all(), slug_field='username')
 
     class Meta:
         model = Todo
