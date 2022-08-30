@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+import rest_framework.versioning
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
@@ -46,6 +48,7 @@ INSTALLED_APPS = [
     'project',
     'django_filters',
     'rest_framework.authtoken',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
@@ -142,26 +145,28 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.JSONRenderer',
         'rest_framework.renderers.BrowsableAPIRenderer',
 
-],
+    ],
 
-'DEFAULT_PARSER_CLASSES': (
+    'DEFAULT_PARSER_CLASSES': (
 
-    'djangorestframework_camel_case.parser.CamelCaseFormParser',
-    'djangorestframework_camel_case.parser.CamelCaseMultiPartParser',
-    'djangorestframework_camel_case.parser.CamelCaseJSONParser',
+        'djangorestframework_camel_case.parser.CamelCaseFormParser',
+        'djangorestframework_camel_case.parser.CamelCaseMultiPartParser',
+        'djangorestframework_camel_case.parser.CamelCaseJSONParser',
 
-),
+    ),
 
-'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
-# 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-# 'PAGE_SIZE': 100,
-'DEFAULT_PERMISSION_CLASSES': [
-    'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
-],
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+    # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    # 'PAGE_SIZE': 100,
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
+    ],
 
-'DEFAULT_AUTHENTICATION_CLASSES': [
-    'rest_framework.authentication.BasicAuthentication',
-    'rest_framework.authentication.SessionAuthentication',
-    'rest_framework.authentication.TokenAuthentication',
-]
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+    'DEFAULT_VERSIONING_CLASS':
+        'rest_framework.versioning.QueryParameterVersioning',
 }
