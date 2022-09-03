@@ -1,4 +1,5 @@
 from django.contrib import admin
+from graphene_django.views import GraphQLView
 from rest_framework import permissions
 from rest_framework.authtoken import views
 from rest_framework.routers import DefaultRouter
@@ -33,5 +34,6 @@ urlpatterns = [
     path('swagger<str:format>/', shema_view.without_ui()),
     path('swagger/', shema_view.with_ui('swagger')),
     path('redoc/', shema_view.with_ui('redoc')),
+    path("graphql/", GraphQLView.as_view(graphiql=True)),
 
 ]
