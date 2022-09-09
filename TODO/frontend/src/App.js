@@ -12,6 +12,9 @@ import {HashRouter, BrowserRouter, Route, Routes, Switch, Navigate, Link} from '
 import NotFound404 from "./components/NotFound";
 import LoginForm from "./components/Auth.js";
 import Cookies from 'universal-cookie';
+import ProjectForm from "./components/ProjectForm";
+import TodoForm from "./components/TodoForm";
+
 
 class App extends React.Component {
     constructor(props) {
@@ -23,6 +26,59 @@ class App extends React.Component {
 
         }
     }
+
+    deleteTodo(id) {
+
+        const headers = this.get_headers()
+        axios.delete(`http://127.0.0.1:8000/api/todo/${id}`, {headers}).then(response => {
+                this.load_data()
+            }
+        ).catch(error => {
+            this.setState({todos: []})
+        })
+    }
+
+    deleteProject(id) {
+        console.log(id)
+        const headers = this.get_headers()
+        axios.delete(`http://127.0.0.1:8000/api/project/${id}`, {headers}).then(response => {
+                this.load_data()
+            }
+        ).catch(error => {
+            this.setState({project: []})
+        })
+
+    }
+
+    createProject(name, link, user) {
+        const headers = this.get_headers()
+        const data = {name: name, link: link, user_list: user}
+        axios.post(`http://127.0.0.1:8000/api/project/`, data,{headers}).then(response => {
+                this.load_data()
+            }
+             ).catch(error => {
+            console.log(error)
+            this.setState({project: []})
+
+        })
+
+    }
+
+     createTodo(project, text, person) {
+        const headers = this.get_headers()
+        const data = {project: project, text: text, person: person}
+        axios.post(`http://127.0.0.1:8000/api/todo/`, data,{headers}).then(response => {
+                this.load_data()
+            }
+             ).catch(error => {
+            console.log(error)
+            this.setState({todos: []})
+
+        })
+
+    }
+
+
 
     is_auth() {
 
@@ -112,6 +168,8 @@ class App extends React.Component {
                                 <li><Link to='/'>Main</Link></li>
                                 <li><Link to='/todos'>Todos</Link></li>
                                 <li><Link to='/project'>Projects list</Link></li>
+                                <li><Link to='/project/create'>Create project</Link></li>
+                                 <li><Link to='/todo/create'>Create todo</Link></li>
                                 {/*<li><Link to='/login'>Login</Link></li>*/}
                                 <li> {this.is_auth() ? <button
                                         onClick={() => this.logout()}>Logout</button> :
@@ -124,11 +182,19 @@ class App extends React.Component {
                     <Routes>
 
                         <Route exact path='/' element={<UserList users={this.state.users}/>}/>
-                        <Route exact path='/todos' element={<TodosList todos={this.state.todos}/>}/>
+                        <Route exact path='/todos' element={<TodosList todos={this.state.todos}
+                             deleteTodo={(id) => this.deleteTodo(id)}/>}/>
+                        <Route exact path='/todo/create' element={<TodoForm todos={this.state.todos}
+                         createTodo={(project, text, person) => this.createTodo(project, text, person)}/> }>/</Route>
+                         <Route exact path='/project/create' element={<ProjectForm user_list={this.state.users}
+                         createProject={(name, link, user) => this.createProject(name, link, user)}/> }>/</Route>
+
                         <Route path='/project'>
-                            <Route index element={<ProjectList items={this.state.project}/>}/>
+                            <Route index element={<ProjectList items={this.state.project}
+                            deleteProject={(id) => this.deleteProject(id)}/>}/>
                             <Route path='project/:projectId' element={<ProjectFilterList items={this.state.todos}/>}/>
                         </Route>
+
                         <Route exact path='/login/' element={<LoginForm
                             get_token={(username, password) => this.get_token(username, password)}/>}/>
 

@@ -11,7 +11,7 @@ class ProjectSerializer(ModelSerializer):
 
     class Meta:
         model = Project
-        fields = ('name', 'link')
+        fields = '__all__'  # ('name', 'link')
 
 class TodoSerializer(ModelSerializer):
 

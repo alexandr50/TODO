@@ -14,10 +14,10 @@ class UserModelViewSet(ModelViewSet):
     serializer_class = UserModelSerializers
     # permission_classes = [IsAuthenticated]
 
-    def get_serializer_class(self):
-        if self.request.version == 'v1':
-            return UserModelSerializers
-        else:
-            return UserCustomSerializers
+    # def get_serializer_class(self):
+    #     if self.request.version == 'v1':
+    #         return UserModelSerializers
+    #     else:
+    #         return UserCustomSerializers
 
 
